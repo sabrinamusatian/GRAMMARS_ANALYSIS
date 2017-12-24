@@ -1,5 +1,6 @@
 from common_util import count_res
 from matrix_method import matrix_method
+from glr_method import glr
 import sys
 
 test_data_Q1 = {
@@ -42,6 +43,19 @@ def test_matrix_method(test_data, grammar_name):
             print ("Test for " + grammar_name + " and "  + name + " completed successfully.")
     return True
 
+def test_glr_method(test_data, grammar_name):
+    for key in test_data.items():
+        name, val = key
+        print ("Test for " + grammar_name + " and " + name + " started.")
+        leng = count_res(glr("./grammars/" + grammar_name, "./data/" + name))
+        if (leng != val):
+            print (name + "failed")
+            return False
+        else:
+            print ("Test for " + grammar_name + " and "  + name + " completed successfully.")
+    return True
+
+
 if __name__ == '__main__':
 
     if len(sys.argv) < 2:
@@ -54,3 +68,9 @@ if __name__ == '__main__':
         Q2_tests = test_matrix_method(test_data_Q2, "Q2_homsky")
         if (Q1_tests and Q2_tests):
             print ("All tests for matrix_method passed successfully")
+
+    if (sys.argv[1] == "glr_method"):
+        Q1_tests = test_glr_method(test_data_Q1, "Q1")
+        Q2_tests = test_glr_method(test_data_Q2, "Q2")
+        if (Q1_tests and Q2_tests):
+            print ("All tests for glr_method passed successfully")
