@@ -23,13 +23,17 @@ def get_graph(filename):
 # Grammar represented as productions stored in dictionary
 def get_grammar(filename):
     gram = defaultdict(list)
+    epsilons = []
     with open(filename) as f:
+
         lines = f.readlines()
         for line in lines:
             l, r = line.split(' -> ')
             r = r.rstrip('\n')
             gram[l].append(r.split(' '))
-    return gram
+            if r == "eps":
+                epsilons.append(l)
+    return gram, epsilons
 
 class grammar_edge(object):
     def __init__(self, fr, to, lbl, is_non_term):

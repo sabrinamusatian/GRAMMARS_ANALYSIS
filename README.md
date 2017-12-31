@@ -62,7 +62,7 @@ python tests.py "all"
 
 If you want to run small tests type:
 ```
-python small_tests.py 
+python small_tests.py
 ```
 
 Small tests are executed for all methods at the same run.

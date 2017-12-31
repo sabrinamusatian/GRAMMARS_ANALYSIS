@@ -5,7 +5,7 @@ import sys
 
 def matrix_method(grammar_filename, graph_filename):
     graph = get_graph(graph_filename)
-    grammar_rules = get_grammar(grammar_filename)
+    grammar_rules, epsilons = get_grammar(grammar_filename)
 
     # make more comfortable representation of grammar for this task
     grammar_term = set()
@@ -27,7 +27,9 @@ def matrix_method(grammar_filename, graph_filename):
             for el in graph[i][j]:
                 if el in grammar_term:
                     mat[i][j].extend(grammar_prod[(el,)])
-
+    for key in epsilons:
+        for i in range(size):
+            mat[i][i].append(key)
     # Transitive closure
     work = True
     timer = time.time()
