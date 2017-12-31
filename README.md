@@ -52,6 +52,10 @@ python tests.py "gll_method"
 
 ## Test data:
 
-All grammars are stored in grammars folder
-name_homsky - grammars in NHF
-name_gr - grammars represented as graphs
+All grammars are stored in grammars folder:
+
+name_homsky - grammars in NHF(for matrix method)
+
+name - grammars represented as its productions(for glr method)
+
+name_gr - grammars represented as graphs(for gll method)
