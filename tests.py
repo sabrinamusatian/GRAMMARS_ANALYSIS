@@ -39,7 +39,7 @@ def test_matrix_method(test_data, grammar_name):
         print ("Test for " + grammar_name + " and " + name + " started.")
         leng = count_res(matrix_method("./grammars/" + grammar_name, "./data/" + name))
         if (leng != val):
-            print (name + "failed")
+            print (name + " failed")
             return False
         else:
             print ("Test for " + grammar_name + " and "  + name + " completed successfully.")
@@ -51,7 +51,7 @@ def test_glr_method(test_data, grammar_name):
         print ("Test for " + grammar_name + " and " + name + " started.")
         leng = count_res(glr("./grammars/" + grammar_name, "./data/" + name))
         if (leng != val):
-            print (name + "failed")
+            print (name + " failed")
             return False
         else:
             print ("Test for " + grammar_name + " and "  + name + " completed successfully.")
@@ -81,8 +81,8 @@ def unit_matrix_method():
 
 def unit_glr_method():
     print("Tests for glr method started")
-    Q1_tests = test_glr_method(test_data_Q1, "Q1")
-    Q2_tests = test_glr_method(test_data_Q2, "Q2")
+    Q1_tests = test_glr_method(test_data_Q1, "Q1_gr")
+    Q2_tests = test_glr_method(test_data_Q2, "Q2_gr")
     if (Q1_tests and Q2_tests):
         print ("All tests for glr_method passed successfully")
         return True

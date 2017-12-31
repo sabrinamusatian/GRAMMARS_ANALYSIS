@@ -90,7 +90,7 @@ def gll(grammar_filename, graph_filename):
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         print("Incorrect number of input parameters. Please try to start script like this:"
-              "python gll_method.py grammars/Q1 data/skos.dot (optional)res.txt")
+              "python gll_method.py grammars/Q1_gr data/skos.dot (optional)res.txt")
         sys.exit()
 
     res = '\n'.join(map(str, gll(sys.argv[1], sys.argv[2])))

@@ -56,6 +56,4 @@ All grammars are stored in grammars folder:
 
 name_homsky - grammars in NHF(for matrix method)
 
-name - grammars represented as its productions(for glr method)
-
-name_gr - grammars represented as graphs(for gll method)
+name_gr - grammars represented as graphs(for gll and glr methods)
