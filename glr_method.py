@@ -56,8 +56,8 @@ def glr(grammar_filename, graph_filename):
                                 queue.put(next)
                                 visited[next] = True
 
-    return [(i, lbl, j) for i in range(size_graph) for j in range(size_graph)
-            for lbl in graph[i][j]]
+    return list(filter(lambda x: x[1].isupper(), [(i, lbl, j) for i in range(size_graph) for j in range(size_graph)
+            for lbl in graph[i][j]]))
 
 
 if __name__ == '__main__':

@@ -49,6 +49,23 @@ python tests.py "gll_method"
 ```
 
 ###
+## Tests:
+There are two types of tests: unit tests with big data and small examples.
+
+How to run big tests for each methos see above.
+
+If you want to run tests for all methods at once type:
+
+```
+python tests.py "all"
+```
+
+If you want to run small tests type:
+```
+python small_tests.py "all"
+```
+
+Small tests are executed for all methods at the same run.
 
 ## Test data:
 
