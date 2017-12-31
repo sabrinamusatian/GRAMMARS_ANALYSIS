@@ -1,4 +1,3 @@
-from itertools import product
 from common_util import get_graph, get_grammar
 from collections import defaultdict
 import time
@@ -38,14 +37,18 @@ def matrix_method(grammar_filename, graph_filename):
             timer = time.time()
             print("Result for " + grammar_filename + " and "
                   + graph_filename + " is still computing. Please wait")
-        for a, b, c in product(range(size), repeat=3):
-            for prob_prod in product(mat[a][b], mat[b][c]):
-                if prob_prod in grammar_prod:
-                    left = grammar_prod[prob_prod]
-                    for el in left:
-                        if el not in mat[a][c]:
-                            mat[a][c].append(el)
-                            work = True
+        for a in range(size):
+            for b in range(size):
+                for c in range(size):
+                    for ab in mat[a][b]:
+                        for bc in mat[b][c]:
+                            prob_prod = (ab, bc)
+                            if prob_prod in grammar_prod:
+                                left = grammar_prod[prob_prod]
+                                for el in left:
+                                    if el not in mat[a][c]:
+                                        mat[a][c].append(el)
+                                        work = True
     return [(i, lbl, j) for i in range(size) for j in range(size)
             for lbl in mat[i][j]]
 

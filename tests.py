@@ -1,6 +1,8 @@
 from common_util import count_res
 from matrix_method import matrix_method
 from glr_method import glr
+from gll_method import gll
+
 import sys
 
 test_data_Q1 = {
@@ -55,6 +57,45 @@ def test_glr_method(test_data, grammar_name):
             print ("Test for " + grammar_name + " and "  + name + " completed successfully.")
     return True
 
+def test_gll_method(test_data, grammar_name):
+    for key in test_data.items():
+        name, val = key
+        print ("Test for " + grammar_name + " and " + name + " started.")
+        leng = count_res(gll("./grammars/" + grammar_name, "./data/" + name))
+        if (leng != val):
+            print leng
+            print (name + " failed")
+            return False
+        else:
+            print ("Test for " + grammar_name + " and "  + name + " completed successfully.")
+    return True
+
+def unit_matrix_method():
+    print("Tests for matrix method started")
+    Q1_tests = test_matrix_method(test_data_Q1, "Q1_homsky")
+    Q2_tests = test_matrix_method(test_data_Q2, "Q2_homsky")
+    if (Q1_tests and Q2_tests):
+        print ("All tests for matrix_method passed successfully")
+        return True
+    return False
+
+def unit_glr_method():
+    print("Tests for glr method started")
+    Q1_tests = test_glr_method(test_data_Q1, "Q1")
+    Q2_tests = test_glr_method(test_data_Q2, "Q2")
+    if (Q1_tests and Q2_tests):
+        print ("All tests for glr_method passed successfully")
+        return True
+    return False
+
+def unit_gll_method():
+    print("Tests for gll method started")
+    Q1_tests = test_gll_method(test_data_Q1, "Q1_gr")
+    Q2_tests = test_gll_method(test_data_Q2, "Q2_gr")
+    if (Q1_tests and Q2_tests):
+        print ("All tests for gll_method passed successfully")
+        return True
+    return False
 
 if __name__ == '__main__':
 
@@ -64,13 +105,14 @@ if __name__ == '__main__':
         sys.exit()
 
     if (sys.argv[1] == "matrix_method"):
-        Q1_tests = test_matrix_method(test_data_Q1, "Q1_homsky")
-        Q2_tests = test_matrix_method(test_data_Q2, "Q2_homsky")
-        if (Q1_tests and Q2_tests):
-            print ("All tests for matrix_method passed successfully")
+        unit_matrix_method()
 
     if (sys.argv[1] == "glr_method"):
-        Q1_tests = test_glr_method(test_data_Q1, "Q1")
-        Q2_tests = test_glr_method(test_data_Q2, "Q2")
-        if (Q1_tests and Q2_tests):
-            print ("All tests for glr_method passed successfully")
+        unit_glr_method()
+
+    if (sys.argv[1] == "gll_method"):
+        unit_gll_method()
+
+    if (sys.argv[1] == "all"):
+        if unit_gll_method() and unit_matrix_method() and unit_glr_method():
+            print("Tests for all methods finished successfully")

@@ -1,0 +1,15 @@
+S -> A C
+C -> S V
+S -> E Q
+Q -> S Z
+S -> D P
+P -> B V
+S -> E K
+K -> B Z
+E -> 1
+Z -> 2
+A -> 3
+V -> 4
+B -> B F
+B -> F
+F -> 5

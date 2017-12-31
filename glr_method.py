@@ -1,6 +1,7 @@
 from common_util import get_graph, get_grammar
 import time
 import sys
+from itertools import product
 
 def rec_path(grammar, graph, fr, to, non_term, len_str, work):
     for key in grammar:
