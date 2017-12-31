@@ -69,8 +69,12 @@ Small tests are executed for all methods at the same run.
 
 ## Test data:
 
-All grammars are stored in grammars folder:
+All grammars for big tests are stored in grammars folder:
 
 name_homsky - grammars in NHF(for matrix method)
 
 name_gr - grammars represented as graphs(for gll and glr methods)
+
+All graphs for big tests are stored in data folder.
+
+Both grammars and graphs for small tests are stored in small_tests folder.
