@@ -2,27 +2,36 @@ from common_util import *
 from matrix_method import matrix_method
 from glr_method import glr
 from gll_method import gll
+import os
 
-import sys
+def read_ans(filename):
+    with open(filename) as f:
+        lines = f.readlines()
+        tmp = []
+        for line in lines:
+            r = line.rstrip('\n')
+            pos1, term, pos2 = r.split(',')
+            tmp.append((int(pos1), term, int(pos2)))
+        return tmp
 
-small1_test = [(0, 'S', 0),
-               (1, 'S', 0),
-               (1, 'S', 1),
-               (2, 'S', 2)]
+def print_ans(res, filename):
+    fxi = open(filename, 'w')
+    for el in res:
+        pos1, term, pos2 = el
+        fxi.write(str(pos1) + "," + term + "," + str(pos2) + os.linesep)
 
-small2_test = [(0, 'S', 0)]
-small3_test = [(0, 'S', 1)]
-small4_test = [(0, 'S', 1), (0, 'S', 2), (0, 'S', 3),
-               (0, 'S', 4), (0, 'S', 5), (1, 'S', 2),
-               (1, 'S', 3), (1, 'S', 4), (1, 'S', 5),
-               (2, 'S', 3), (2, 'S', 4), (2, 'S', 5),
-               (3, 'S', 4), (3, 'S', 5), (4, 'S', 5)]
-
-small5_test = [(1, 'S', 4), (0, 'S', 6), (3, 'S', 7), (2, 'S', 7),
-               (1, 'S', 7), (1, 'S', 0), (3, 'S', 4), (1, 'S', 5),
-               (2, 'S', 6), (3, 'S', 0), (0, 'S', 0), (3, 'S', 5),
-               (2, 'S', 5), (1, 'S', 6), (0, 'S', 4), (0, 'S', 7),
-               (2, 'S', 4), (0, 'S', 5), (3, 'S', 6), (2, 'S', 0)]
+test_data_gr= [("small1_graph.dot", "small1_gr","small1_ans"),
+            ("small2_graph.dot", "small2_gr", "small2_ans"),
+            ("small3_graph.dot", "small3_gr", "small3_ans"),
+            ("small4_graph.dot", "small4_gr", "small4_ans"),
+            ("small5_graph.dot", "small5_gr", "small5_ans"),
+            ("small6_graph.dot", "small5_gr", "small6_ans")]
+test_data_homsky= [("small1_graph.dot", "small1_homsky","small1_ans"),
+            ("small2_graph.dot", "small2_homsky", "small2_ans"),
+            ("small3_graph.dot", "small3_homsky", "small3_ans"),
+            ("small4_graph.dot", "small4_homsky", "small4_ans"),
+            ("small5_graph.dot", "small5_homsky", "small5_ans"),
+            ("small6_graph.dot", "small5_homsky", "small6_ans")]
 
 def check_list_eq(res, ans_list):
     if len(res) == len(ans_list):
@@ -37,55 +46,71 @@ def check_list_eq(res, ans_list):
     return True
 
 
-def test_glr_method(graph_name, grammar_name, ans_list):
+def test_glr_method(graph_name, grammar_name, ans_file):
     print ("Test for " + grammar_name + " and " + graph_name + " started.")
     res = list(filter(lambda x: x[1] == 'S',
                       glr("./small_tests/" + grammar_name, "./small_tests/" + graph_name)))
+    ans_list = read_ans("./small_tests/" + ans_file)
     if not check_list_eq(res, ans_list):
         print (graph_name + " failed")
         return False
     print ("Test for " + grammar_name + " and "  + graph_name + " completed successfully.")
     return True
 
-def test_gll_method(graph_name, grammar_name, ans_list):
+def test_gll_method(graph_name, grammar_name, ans_file):
     print ("Test for " + grammar_name + " and " + graph_name + " started.")
     res = list(filter(lambda x: x[1] == 'S',
                       list(gll("./small_tests/" + grammar_name, "./small_tests/" + graph_name))))
-
+    ans_list = read_ans("./small_tests/" + ans_file)
     if not check_list_eq(res, ans_list):
         print (graph_name + " failed")
         return False
     print ("Test for " + grammar_name + " and " + graph_name + " completed successfully.")
     return True
 
-def test_matrix_method(graph_name, grammar_name, ans_list):
+def test_matrix_method(graph_name, grammar_name, ans_file):
     print ("Test for " + grammar_name + "  and " + graph_name + " started.")
     res = list(filter(lambda x: x[1] == 'S',
                       matrix_method("./small_tests/" + grammar_name, "./small_tests/" + graph_name)))
+    ans_list = read_ans("./small_tests/" + ans_file)
     if not check_list_eq(res, ans_list):
         print (graph_name + " failed")
         return False
     print ("Test for " + grammar_name + " and "  + graph_name + " completed successfully.")
     return True
 
-if __name__ == '__main__':
+def glr_tests(test_data):
     print ("Tests for glr method started")
-    glr_1 = test_glr_method('small1_graph.dot', "small1_gr", small1_test)
-    glr_2 = test_glr_method('small2_graph.dot', "small2_gr", small2_test)
-    glr_3 = test_glr_method('small3_graph.dot', "small3_gr", small3_test)
-    glr_4 = test_glr_method('small4_graph.dot', "small4_gr", small4_test)
-    glr_5 = test_glr_method('small5_graph.dot', "small5_gr", small5_test)
+    for graph, grammar, ans in test_data:
+        temp = test_glr_method(graph, grammar, ans)
+        if not temp:
+            return False
+    print ("All tests for glr method completed successfully.")
+    return True
 
+def gll_tests(test_data):
     print ("Tests for gll method started")
-    gll_1 = test_gll_method('small1_graph.dot', "small1_gr", small1_test)
-    gll_2 = test_gll_method('small2_graph.dot', "small2_gr", small2_test)
-    gll_3 = test_gll_method('small3_graph.dot', "small3_gr", small3_test)
-    gll_4 = test_gll_method('small4_graph.dot', "small4_gr", small4_test)
-    gll_5 = test_gll_method('small5_graph.dot', "small5_gr", small5_test)
+    for graph, grammar, ans in test_data:
+        temp = test_gll_method(graph, grammar, ans)
+        if not temp:
+            return False
+    print ("All tests for gll method completed successfully.")
+    return True
 
+def matrix_tests(test_data):
     print ("Tests for matrix method started")
-    mat_1 = test_matrix_method('small1_graph.dot', "small1_homsky", small1_test)
-    mat_2 = test_matrix_method('small2_graph.dot', "small2_homsky", small2_test)
-    mat_3 = test_matrix_method('small3_graph.dot', "small3_homsky", small3_test)
-    mat_4 = test_matrix_method('small4_graph.dot', "small4_homsky", small4_test)
-    mat_5 = test_matrix_method('small5_graph.dot', "small5_homsky", small5_test)
+    for graph, grammar, ans in test_data:
+        temp = test_matrix_method(graph, grammar, ans)
+        if not temp:
+            return False
+    print ("All tests for matrix method completed successfully.")
+    return True
+
+if __name__ == '__main__':
+    glr = glr_tests(test_data_gr)
+    gll = gll_tests(test_data_gr)
+    matrix = matrix_tests(test_data_homsky)
+    if (glr and gll and matrix):
+        print("All tests completed successfully.")
+    else:
+        print("Some tests failed.")

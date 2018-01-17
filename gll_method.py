@@ -9,7 +9,7 @@ class Stack:
 
 def get_edges_from_graph(graph):
     graph_edges = set()
-    size, _ = graph.shape
+    size = len(graph)
     for i in range(size):
         for j in range(size):
             for lbl in graph[i][j]:

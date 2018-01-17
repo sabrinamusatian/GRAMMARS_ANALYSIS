@@ -1,9 +1,7 @@
-import numpy as np
-
 import re
 from collections import defaultdict
 
-# Graph represented as a matrix, stored in numpy array
+# Graph represented as a matrix
 def get_graph(filename):
     with open(filename) as f:
         lines = f.readlines()
@@ -18,7 +16,7 @@ def get_graph(filename):
                 j = int(res.group('rr'))
                 label = res.group('lbl')
                 Gr[int(i)][int(j)].append(label)
-    return np.array(Gr)
+    return Gr
 
 # Grammar represented as productions stored in dictionary
 def get_grammar(filename):

@@ -68,6 +68,7 @@ python small_tests.py
 ```
 
 Small tests are executed for all methods at the same run.
+It takes a few minutes to run small tests because of some big generated tests for corner cases.
 
 ## Test data:
 
@@ -80,3 +81,4 @@ name_gr - grammars represented as graphs(for gll and glr methods)
 All graphs for big tests are stored in data folder.
 
 Both grammars and graphs for small tests are stored in small_tests folder.
+In small_tests folder you may also find files with answers for each test.

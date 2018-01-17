@@ -18,7 +18,7 @@ def matrix_method(grammar_filename, graph_filename):
                 grammar_term.add(prod[0])
                 grammar_prod[(prod[0],)].append(key)
 
-    size, _ = graph.shape
+    size = len(graph)
     mat = [[[] for i in range(size)] for j in range(size)]
 
     # terminal to non-terminal
