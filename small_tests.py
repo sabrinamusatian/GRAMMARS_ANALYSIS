@@ -60,7 +60,7 @@ def test_glr_method(graph_name, grammar_name, ans_file):
 def test_gll_method(graph_name, grammar_name, ans_file):
     print ("Test for " + grammar_name + " and " + graph_name + " started.")
     res = list(filter(lambda x: x[1] == 'S',
-                      list(gll("./small_tests/" + grammar_name, "./small_tests/" + graph_name))))
+                      gll("./small_tests/" + grammar_name, "./small_tests/" + graph_name)))
     ans_list = read_ans("./small_tests/" + ans_file)
     if not check_list_eq(res, ans_list):
         print (graph_name + " failed")
