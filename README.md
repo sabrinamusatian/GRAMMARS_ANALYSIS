@@ -74,7 +74,7 @@ It takes a few minutes to run small tests because of some big generated tests fo
 
 All grammars for big tests are stored in grammars folder:
 
-name_homsky - grammars in NHF(for matrix method)
+name_homsky - grammars in CNF(for matrix method)
 
 name_gr - grammars represented as graphs(for gll and glr methods)
 
