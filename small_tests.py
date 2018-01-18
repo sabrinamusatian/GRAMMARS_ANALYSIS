@@ -79,38 +79,43 @@ def test_matrix_method(graph_name, grammar_name, ans_file):
     print ("Test for " + grammar_name + " and "  + graph_name + " completed successfully.")
     return True
 
-def glr_tests(test_data):
-    print ("Tests for glr method started")
+def glr_small_tests(test_data):
+    print ("Small tests for glr method started")
     for graph, grammar, ans in test_data:
         temp = test_glr_method(graph, grammar, ans)
         if not temp:
             return False
-    print ("All tests for glr method completed successfully.")
+    print ("All small tests for glr method completed successfully.")
     return True
 
-def gll_tests(test_data):
-    print ("Tests for gll method started")
+def gll_small_tests(test_data):
+    print ("Small tests for gll method started")
     for graph, grammar, ans in test_data:
         temp = test_gll_method(graph, grammar, ans)
         if not temp:
             return False
-    print ("All tests for gll method completed successfully.")
+    print ("All small tests for gll method completed successfully.")
     return True
 
-def matrix_tests(test_data):
-    print ("Tests for matrix method started")
+def matrix_small_tests(test_data):
+    print ("Small tests for matrix method started")
     for graph, grammar, ans in test_data:
         temp = test_matrix_method(graph, grammar, ans)
         if not temp:
             return False
-    print ("All tests for matrix method completed successfully.")
+    print ("All small tests for matrix method completed successfully.")
     return True
 
-if __name__ == '__main__':
-    glr = glr_tests(test_data_gr)
-    gll = gll_tests(test_data_gr)
-    matrix = matrix_tests(test_data_homsky)
+def run_small_tests():
+    print("Starting small tests.")
+    glr = glr_small_tests(test_data_gr)
+    gll = gll_small_tests(test_data_gr)
+    matrix = matrix_small_tests(test_data_homsky)
     if (glr and gll and matrix):
-        print("All tests completed successfully.")
+        print("All small tests completed successfully.")
+        return True
     else:
-        print("Some tests failed.")
+        print("Some of the small tests failed.")
+        return False
+if __name__ == '__main__':
+    tmp = run_small_tests()

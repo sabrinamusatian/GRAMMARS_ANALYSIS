@@ -2,6 +2,7 @@ from common_util import count_res
 from matrix_method import matrix_method
 from glr_method import glr
 from gll_method import gll
+from small_tests import gll_small_tests, glr_small_tests, matrix_small_tests, run_small_tests, test_data_gr, test_data_homsky
 
 import sys
 
@@ -105,14 +106,21 @@ if __name__ == '__main__':
         sys.exit()
 
     if (sys.argv[1] == "matrix_method"):
-        unit_matrix_method()
+        if matrix_small_tests(test_data_homsky):
+            unit_matrix_method()
 
     if (sys.argv[1] == "glr_method"):
-        unit_glr_method()
+        if glr_small_tests(test_data_gr):
+            unit_glr_method()
 
     if (sys.argv[1] == "gll_method"):
-        unit_gll_method()
+        if gll_small_tests(test_data_gr):
+            unit_gll_method()
+
+    if (sys.argv[1] == "small_tests"):
+        tmp = run_small_tests()
 
     if (sys.argv[1] == "all"):
-        if unit_gll_method() and unit_matrix_method() and unit_glr_method():
-            print("Tests for all methods finished successfully")
+        if run_small_tests():
+            if unit_gll_method() and unit_matrix_method() and unit_glr_method():
+                print("Tests for all methods finished successfully")

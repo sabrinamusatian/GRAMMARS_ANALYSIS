@@ -52,19 +52,19 @@ python tests.py "gll_method"
 ## Tests:
 There are two types of tests: unit tests with big data and small examples.
 
-How to run big tests for each methods see above.
+How to run both small and big tests for each method see above.
 
-If you want to run tests for all methods at once type:
+If you want to run both small and big tests for all methods at once type:
 
 ```
 python tests.py "all"
 ```
 
-It takes approximately 25 minutes to run all the big tests at once.
+It takes approximately 30 minutes to run all the tests at once.
 
-If you want to run small tests type:
+If you want to run only small tests for all methods type:
 ```
-python small_tests.py
+python tests.py "small_tests"
 ```
 
 Small tests are executed for all methods at the same run.

@@ -115,7 +115,7 @@ if __name__ == '__main__':
     res = '\n'.join(map(str, gll(sys.argv[1], sys.argv[2])))
 
     if len(sys.argv) == 3:
-        print res
+        print(res)
     else:
         with open(sys.argv[3], 'w') as f:
             f.write(res)
